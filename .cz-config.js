@@ -4,26 +4,26 @@
  * @email: tusktalk@163.com
  * @github: https://github.com/jvbf2e
  * @Date: 2021-10-12 14:26:13
- * @LastEditTime: 2021-10-12 15:23:15
+ * @LastEditTime: 2021-10-12 15:27:57
  * @FilePath: \Developmente:\Joints\Project\blog\.cz-config.js
  */
 module.exports = {
   types: [
-    { value: '🧪init', name: 'init:    初始提交' },
-    { value: '✨feat', name: 'feat:    增加新功能' },
-    { value: '🩹fix', name: 'fix:    修复bug' },
-    { value: '🌈ui', name: 'ui:    更新UI' },
-    { value: '♻️refactor', name: 'refactor:    代码重构' },
-    { value: '🚀release', name: 'release:    发布' },
-    { value: '🔑deploy', name: 'deploy:    部署' },
-    { value: '📝docs', name: 'docs:    修改文档' },
-    { value: '🔧test', name: 'test:    增删测试' },
-    { value: '📌chore', name: 'chore:    更改配置文件' },
-    { value: '💄style', name: 'style:    样式修改不影响逻辑' },
-    { value: '📕revert', name: 'revert:    版本回退' },
-    { value: '💍add', name: 'add:    添加依赖' },
-    { value: '🔖minus', name: 'minus:    版本回退' },
-    { value: '🍵del', name: 'del:    删除代码/文件' },
+    { value: '🧪init', name: '🧪init:    初始提交' },
+    { value: '✨feat', name: '✨feat:    增加新功能' },
+    { value: '🩹fix', name: '🩹fix:    修复bug' },
+    { value: '🌈ui', name: '🌈ui:    更新UI' },
+    { value: '♻️refactor', name: '♻️refactor:    代码重构' },
+    { value: '🚀release', name: '🚀release:    发布' },
+    { value: '🔑deploy', name: '🔑deploy:    部署' },
+    { value: '📝docs', name: '📝docs:    修改文档' },
+    { value: '🔧test', name: '🔧test:    增删测试' },
+    { value: '📌chore', name: '📌chore:    更改配置文件' },
+    { value: '💄style', name: '💄style:    样式修改不影响逻辑' },
+    { value: '📕revert', name: '📕revert:    版本回退' },
+    { value: '💍add', name: '💍add:    添加依赖' },
+    { value: '🔖minus', name: '🔖minus:    版本回退' },
+    { value: '🍵del', name: '🍵del:    删除代码/文件' },
   ],
   scopes: [],
   messages: {
