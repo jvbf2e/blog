@@ -1,0 +1,34 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  .left {
+    position: relative;
+    .logo {
+      display: inline-block;
+      margin: 20px 24px;
+      height: 32px;
+    }
+  }
+  .right {
+    position: relative;
+    .menu {
+      display: flex;
+      flex-direction: row;
+      &Item {
+        & > a {
+          display: inline-block;
+          margin: 20px 24px;
+          padding: 4px 12px;
+          color: var(--color-white);
+          font-size: 14px;
+          line-height: 24px;
+          transition: color 0.3s;
+          &:hover {
+            color: var(--color-auxiliary);
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
