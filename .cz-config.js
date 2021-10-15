@@ -4,7 +4,7 @@
  * @email: tusktalk@163.com
  * @github: https://github.com/jvbf2e
  * @Date: 2021-10-12 14:26:13
- * @LastEditTime: 2021-10-12 15:30:11
+ * @LastEditTime: 2021-10-15 14:30:09
  * @FilePath: \Developmente:\Joints\Project\blog\.cz-config.js
  */
 module.exports = {
@@ -23,7 +23,7 @@ module.exports = {
     { value: '📕revert', name: '📕 版本回退' },
     { value: '💍add', name: '💍 添加依赖' },
     { value: '🔖minus', name: '🔖 版本回退' },
-    { value: '🍵del', name: '🍵 删除代码/文件' },
+    { value: '🍵del', name: '🍵 删除代码/文件' }
   ],
   scopes: [],
   messages: {
@@ -35,8 +35,8 @@ module.exports = {
     body: '详细描述. 使用"|"换行:\n',
     breaking: 'Breaking Changes列表:\n',
     footer: '关闭的issues列表. E.g.: #31, #34:\n',
-    confirmCommit: '确认提交?',
+    confirmCommit: '确认提交?'
   },
   allowCustomScopes: true,
-  allowBreakingChanges: ['feat', 'fix'],
-};
+  allowBreakingChanges: ['feat', 'fix']
+}

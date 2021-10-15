@@ -4,7 +4,7 @@
  * @email: tusktalk@163.com
  * @github: https://github.com/jvbf2e
  * @Date: 2021-10-12 14:18:15
- * @LastEditTime: 2021-10-12 14:44:37
+ * @LastEditTime: 2021-10-15 14:30:14
  * @FilePath: \Developmente:\Joints\Project\blog\.commitlint.js
  */
 module.exports = {
@@ -31,8 +31,8 @@ module.exports = {
         'revert',
         'add',
         'minus',
-        'del',
-      ],
+        'del'
+      ]
     ],
     // <type> 不能为空
     'type-empty': [2, 'never'],
@@ -60,6 +60,6 @@ module.exports = {
     // <body> 以空行开头
     'body-leading-blank': [1, 'always'],
     // <footer> 以空行开头
-    'footer-leading-blank': [1, 'always'],
-  },
-};
+    'footer-leading-blank': [1, 'always']
+  }
+}

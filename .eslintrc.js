@@ -4,24 +4,19 @@
  * @email: tusktalk@163.com
  * @github: https://github.com/jvbf2e
  * @Date: 2021-10-12 14:17:43
- * @LastEditTime: 2021-10-12 14:17:45
+ * @LastEditTime: 2021-10-15 14:37:15
  * @FilePath: \Developmente:\Joints\Project\blog\.eslintrc.js
  */
 module.exports = {
   parser: '@typescript-eslint/parser',
-  extends: [
-    'standard',
-    'plugin:react/recommended',
-    'plugin:prettier/recommended',
-    'plugin:import/typescript',
-  ],
+  extends: ['standard', 'plugin:react/recommended', 'plugin:prettier/recommended', 'plugin:import/typescript'],
   env: {
     browser: true,
     node: true,
     es6: true,
     mocha: true,
     jest: true,
-    jasmine: true,
+    jasmine: true
   },
   plugins: ['react', 'prettier', '@typescript-eslint'],
   // https://github.com/typescript-eslint/typescript-eslint/issues/46#issuecomment-470486034
@@ -29,13 +24,13 @@ module.exports = {
     {
       files: ['*.ts', '*.tsx'],
       rules: {
-        '@typescript-eslint/no-unused-vars': [1, { args: 'none' }],
-      },
-    },
+        '@typescript-eslint/no-unused-vars': [1, { args: 'none' }]
+      }
+    }
   ],
   rules: {
-    //语句强制分号结尾
-    semi: [2, 'always'],
+    // 语句强制分号结尾
+    semi: [0],
     // 布尔值类型的 propTypes 的 name 必须为 is 或 has 开头
     // @off 不强制要求写 propTypes
     'react/boolean-prop-naming': 'off',
@@ -146,8 +141,8 @@ module.exports = {
       'error',
       {
         nonEmpty: false,
-        selfClosing: 'line-aligned',
-      },
+        selfClosing: 'line-aligned'
+      }
     ],
     // @fixable 结束标签必须与开始标签的那一行对齐
     // @off 已经在 jsx-indent 中限制了
@@ -158,13 +153,13 @@ module.exports = {
       {
         when: 'never',
         attributes: {
-          allowMultiline: true,
+          allowMultiline: true
         },
         children: true,
         spacing: {
-          objectLiterals: 'never',
-        },
-      },
+          objectLiterals: 'never'
+        }
+      }
     ],
     // @fixable props 与 value 之间的等号前后禁止有空格
     'react/jsx-equals-spacing': ['error', 'never'],
@@ -208,8 +203,8 @@ module.exports = {
       {
         closingSlash: 'never',
         beforeSelfClosing: 'always',
-        afterOpening: 'never',
-      },
+        afterOpening: 'never'
+      }
     ],
     // jsx 文件必须 import React
     'react/jsx-uses-react': 'error',
@@ -219,19 +214,12 @@ module.exports = {
     // @off 没必要限制
     'react/jsx-wrap-multilines': 'off',
 
-    'no-unused-vars': 'off',
-    // jsdoc语法检查
-    'valid-jsdoc': [
-      'error',
-      {
-        requireReturn: false,
-      },
-    ],
+    'no-unused-vars': 'off'
   },
   settings: {
     react: {
-      version: 'detect',
+      version: 'detect'
     },
-    polyfills: ['fetch', 'promises', 'url'],
-  },
-};
+    polyfills: ['fetch', 'promises', 'url']
+  }
+}

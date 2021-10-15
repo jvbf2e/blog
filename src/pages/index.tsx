@@ -4,58 +4,78 @@
  * @email: tusktalk@163.com
  * @github: https://github.com/jvbf2e
  * @Date: 2021-10-11 10:58:07
- * @LastEditTime: 2021-10-12 10:40:33
+ * @LastEditTime: 2021-10-15 17:10:03
  * @FilePath: \Developmente:\Joints\Project\blog\src\pages\index.tsx
  */
-import type { ObjTypes } from '@/typings';
+import type { UmiComponentProps } from '@/common/type'
+import type { ListItemProps } from '@/components'
 
-import { Card, List } from '@/components';
-import Layout from './components';
+import { connect, ConnectRC } from 'umi'
 
-import styles from './index.less';
+import { Card, List } from '@/components'
+import Layout from './components'
 
-type ListProps = {
-  data: ObjTypes[];
-};
+import styles from './index.less'
 
-const IndexPage = () => {
-  const banner = () => {
+interface Props extends UmiComponentProps {}
+
+const IndexPage: ConnectRC<Props> = (props) => {
+  // 初始化数据
+  const lists: ListItemProps[] = [
+    {
+      avatar: '',
+      tags: [1],
+      time: 1634197863241,
+      title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor incididut',
+      synopsis: '',
+      browses: 12,
+      feature: '',
+      path: '/'
+    }
+  ]
+
+  // Api
+  const Apis = {
+    getNews: () => {
+      props.dispatch({ type: 'index/query' })
+    }
+  }
+
+  Apis.getNews()
+
+  const bannerElement = () => {
     return (
       <div className={styles.banner}>
         <Layout.Header />
         <div className={styles.msg}>
           <p>Meet our community</p>
-          <p>
-            The best blogging platform about anime, technology and development.
-          </p>
+          <p>The best blogging platform about anime, technology and development.</p>
           <button className={styles.button}>Get started</button>
         </div>
       </div>
-    );
-  };
+    )
+  }
 
-  const lists = (title: string, listProps: ListProps) => {
+  const listsElement = (title: string, rows: ListItemProps[]) => {
     return (
       <div>
         <Card title={title}>
-          <List {...listProps} />
+          <List.Item {...lists[0]}></List.Item>
         </Card>
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <div className={styles.layout}>
-      {banner()}
+      {bannerElement()}
       <div className={styles.content}>
-        {lists('World', { data: [{ name: 'a' }, { name: 'b' }] })}
-        {lists('World', { data: [{ name: 'a' }, { name: 'b' }] })}
+        {listsElement('World', lists)}
+        {listsElement('World', lists)}
         <Layout.Footer />
       </div>
     </div>
-  );
-};
+  )
+}
 
-IndexPage.title = 'World';
-
-export default IndexPage;
+export default connect()(IndexPage)
