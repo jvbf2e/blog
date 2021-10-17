@@ -1,6 +1,12 @@
 .list {
   position: relative;
-  &Item {
-    position: relative;
+  display: flex;
+  &.row {
+    flex-direction: row;
+    flex-flow: row wrap;
+  }
+  &.column {
+    flex-direction: column;
+    flex-flow: column wrap;
   }
 }

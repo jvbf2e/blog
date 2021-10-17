@@ -4,23 +4,23 @@
  * @email: tusktalk@163.com
  * @github: https://github.com/jvbf2e
  * @Date: 2021-10-14 16:06:53
- * @LastEditTime: 2021-10-14 17:04:56
+ * @LastEditTime: 2021-10-17 10:11:48
  * @FilePath: \Developmente:\Joints\Project\blog\src\components\list\index.ts
  */
 
-import InternalList from './List';
-import Item from './ListItem';
+import InternalList from './List'
+import Item from './ListItem'
 
-type InternalListType = typeof InternalList;
+type InternalListType = typeof InternalList
 
 interface ListType extends InternalListType {
-  Item: typeof Item;
+  Item: typeof Item
 }
 
-const List = InternalList as ListType;
+const List = InternalList as ListType
 
-List.Item = Item;
+List.Item = Item
 
-export type { ListItemProps } from './ListItem';
+export type { ListItemProps } from './ListItem'
 
-export default List;
+export default List

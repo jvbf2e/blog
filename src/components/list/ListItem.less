@@ -1,11 +1,20 @@
+@import './mixin.less';
+
 .wrap {
   position: relative;
+  &.col {
+    position: relative;
+    max-width: 100%;
+    min-height: 1px;
+  }
+  .make-grid();
 }
 
 .avatar {
   position: relative;
   &Img {
     position: relative;
+    width: 100%;
   }
 }
 
@@ -14,8 +23,34 @@
 }
 
 .tag {
+  display: inline-block;
   position: relative;
-  &Wrap {
-    position: relative;
+  padding: 2px 8px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 12px;
+  background-color: #1890ff;
+  & + .tag {
+    margin-left: 8px;
   }
+  &Wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 8px;
+    z-index: 9;
+  }
+}
+
+.feature {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  bottom: 12px;
+  padding: 4px 8px 4px 12px;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 20px 0 0 20px;
+  background-color: red;
+  z-index: 9;
 }

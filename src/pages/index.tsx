@@ -4,13 +4,15 @@
  * @email: tusktalk@163.com
  * @github: https://github.com/jvbf2e
  * @Date: 2021-10-11 10:58:07
- * @LastEditTime: 2021-10-15 17:10:03
+ * @LastEditTime: 2021-10-17 18:03:12
  * @FilePath: \Developmente:\Joints\Project\blog\src\pages\index.tsx
  */
-import type { UmiComponentProps } from '@/common/type'
+import type { ObjType, UmiComponentProps } from '@/common/type'
 import type { ListItemProps } from '@/components'
+import type { IndexModelState } from './model'
 
-import { connect, ConnectRC } from 'umi'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'umi'
 
 import { Card, List } from '@/components'
 import Layout from './components'
@@ -19,37 +21,25 @@ import styles from './index.less'
 
 interface Props extends UmiComponentProps {}
 
-const IndexPage: ConnectRC<Props> = (props) => {
-  // 初始化数据
-  const lists: ListItemProps[] = [
-    {
-      avatar: '',
-      tags: [1],
-      time: 1634197863241,
-      title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor incididut',
-      synopsis: '',
-      browses: 12,
-      feature: '',
-      path: '/'
-    }
-  ]
+const IndexPage = (props: Props) => {
+  const { ...options } = props
 
-  // Api
-  const Apis = {
-    getNews: () => {
-      props.dispatch({ type: 'index/query' })
-    }
-  }
+  const dispatch = useDispatch()
+  const { list, banner } = useSelector((state: ObjType): IndexModelState => state.index)
 
-  Apis.getNews()
+  // ===== Effect =====
+  useEffect(() => {
+    dispatch({ type: 'index/query' })
+  }, [])
 
+  // ===== Render =====
   const bannerElement = () => {
     return (
-      <div className={styles.banner}>
+      <div className={styles.banner} style={{ backgroundImage: `url("${banner.img}")` }}>
         <Layout.Header />
         <div className={styles.msg}>
-          <p>Meet our community</p>
-          <p>The best blogging platform about anime, technology and development.</p>
+          <p>{banner.title}</p>
+          <p>{banner.msg}</p>
           <button className={styles.button}>Get started</button>
         </div>
       </div>
@@ -60,7 +50,11 @@ const IndexPage: ConnectRC<Props> = (props) => {
     return (
       <div>
         <Card title={title}>
-          <List.Item {...lists[0]}></List.Item>
+          <List direction="row" gutter={[24, 24]} listCunt={4} {...options}>
+            {rows.map((row) => (
+              <List.Item key={row.id} {...row}></List.Item>
+            ))}
+          </List>
         </Card>
       </div>
     )
@@ -70,12 +64,11 @@ const IndexPage: ConnectRC<Props> = (props) => {
     <div className={styles.layout}>
       {bannerElement()}
       <div className={styles.content}>
-        {listsElement('World', lists)}
-        {listsElement('World', lists)}
+        {listsElement('World', list)}
         <Layout.Footer />
       </div>
     </div>
   )
 }
 
-export default connect()(IndexPage)
+export default IndexPage

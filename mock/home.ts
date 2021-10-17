@@ -4,7 +4,7 @@
  * @email: tusktalk@163.com
  * @github: https://github.com/jvbf2e
  * @Date: 2021-10-14 17:12:14
- * @LastEditTime: 2021-10-15 17:44:32
+ * @LastEditTime: 2021-10-17 17:54:39
  * @FilePath: \Developmente:\Joints\Project\blog\mock\home.ts
  */
 import type { Request, Response } from 'express'
@@ -18,11 +18,22 @@ export default {
       code: 200,
       msg: 'success',
       data: {
-        'list|1-10': [
+        banner: {
+          img: '@image("1920x900")',
+          title: '@title()',
+          msg: '@paragraph()'
+        },
+        'list|10': [
           {
             id: '@guid()',
-            title: '@cname()',
-            time: '@datetime()'
+            avatar: '@image("300x250")',
+            'tags|1-3': ['@integer(0, 2)'],
+            time: '@datetime()',
+            title: '@title()',
+            synopsis: '@paragraph()',
+            browses: '@integer(0,100)',
+            feature: 'Feature',
+            path: '/'
           }
         ]
       }

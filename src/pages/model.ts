@@ -4,16 +4,24 @@
  * @email: tusktalk@163.com
  * @github: https://github.com/jvbf2e
  * @Date: 2021-10-14 17:22:16
- * @LastEditTime: 2021-10-15 16:54:37
+ * @LastEditTime: 2021-10-17 17:53:40
  * @FilePath: \Developmente:\Joints\Project\blog\src\pages\model.ts
  */
-import { ObjType } from '@/common/type'
 import type { Effect, Reducer, Subscription } from 'umi'
+import type { ObjType } from '@/common/type'
+import type { ListItemProps } from '@/components'
 
 import { query } from './service'
 
+type BannerType = {
+  img: string
+  title: string
+  msg: string
+}
+
 export interface IndexModelState {
-  name: string
+  list: ListItemProps[]
+  banner: BannerType
 }
 
 export interface IndexModelType {
@@ -24,28 +32,41 @@ export interface IndexModelType {
   }
   reducers: {
     save: Reducer<IndexModelState>
+    reset: () => IndexModelState
   }
   subscriptions: ObjType<Subscription>
 }
 
+const getDefaultState = (): IndexModelState => ({
+  list: [],
+  banner: {
+    img: '',
+    title: '',
+    msg: ''
+  }
+})
+
 const IndexModel: IndexModelType = {
   namespace: 'index',
-  state: {
-    name: ''
-  },
+  state: getDefaultState(),
   reducers: {
-    save(state, action) {
+    save(state, { payload }) {
       return {
         ...state,
-        ...action.payload
+        ...payload
       }
-    }
+    },
+    reset: getDefaultState
   },
   effects: {
     *query({ payload }, { call, put }) {
-      const response = yield call(query)
-      console.log(response)
-      console.log(payload)
+      const { code, data: res } = yield call(query)
+      if (code === 200) {
+        yield put({
+          type: 'save',
+          payload: res
+        })
+      }
     }
   },
   subscriptions: {}
