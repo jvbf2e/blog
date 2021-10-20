@@ -4,7 +4,7 @@
  * @email: tusktalk@163.com
  * @github: https://github.com/jvbf2e
  * @Date: 2021-10-12 16:36:14
- * @LastEditTime: 2021-10-15 14:31:35
+ * @LastEditTime: 2021-10-19 10:44:13
  * @FilePath: \Developmente:\Joints\Project\blog\src\layouts\BaseLayout.tsx
  */
 import type { UmiComponentProps, ObjType } from '@/common/type'

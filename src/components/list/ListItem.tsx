@@ -4,29 +4,24 @@
  * @email: tusktalk@163.com
  * @github: https://github.com/jvbf2e
  * @Date: 2021-10-14 14:20:59
- * @LastEditTime: 2021-10-17 18:02:46
+ * @LastEditTime: 2021-10-19 10:22:34
  * @FilePath: \Developmente:\Joints\Project\blog\src\components\list\ListItem.tsx
  */
-import type { ObjType } from '@/common/type'
+import type { ObjType, UmiComponentProps } from '@/common/type'
 
 import React from 'react'
 import { Link } from 'umi'
-import ListContext from './Context'
-import { tupleNum } from '@/common/type'
-
-import styles from './ListItem.less'
 import classNames from 'classnames'
+import { tuple, tupleNum } from '@/common/type'
+import filters from '@/utils/filters'
 
-enum tagEnum {
-  'JavaScript',
-  'React',
-  'Vue'
-}
+import ListContext from './Context'
+import styles from './ListItem.less'
 
 const Span = tupleNum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24)
+const Size = tuple('small', 'middle', 'large')
 
 export interface ListItemProps {
-  span?: typeof Span
   id: string
   avatar: string
   tags: number[]
@@ -38,21 +33,17 @@ export interface ListItemProps {
   path: string
 }
 
-const ListItem = (props: ObjType) => {
-  const { span, avatar, time, title, tags, feature, path } = props
-  const { gutter, listCunt } = React.useContext(ListContext)
+interface ListItemType {
+  span?: typeof Span[number]
+  size?: typeof Size[number]
+  data: ListItemProps
+  children: any
+}
 
-  const tagsElement = (tags: number[]) => (
-    <div className={styles.tagWrap}>
-      {tags.map((item, index) => {
-        return (
-          <span className={styles.tag} key={index}>
-            {tagEnum[item]}
-          </span>
-        )
-      })}
-    </div>
-  )
+const ListItem = (props: ListItemType) => {
+  const { span, size, data, children } = props
+  const { id, avatar, time, title, feature, synopsis, browses, path } = data
+  const { gutter, listCunt } = React.useContext(ListContext)
 
   const featureElement = (feature: string) => (feature ? <div className={styles.feature}>{feature}</div> : <></>)
 
@@ -60,7 +51,7 @@ const ListItem = (props: ObjType) => {
     <>
       {avatar ? (
         <div className={styles.avatar}>
-          {tagsElement(tags)}
+          {children.tag}
           <img className={styles.avatarImg} src={avatar} />
           {featureElement(feature)}
         </div>
@@ -70,21 +61,49 @@ const ListItem = (props: ObjType) => {
     </>
   )
 
-  const containerElement = () => (
+  const containerElement = (bool: boolean = false) => (
     <div className={styles.container}>
-      <div>
-        <span>{time}</span>
+      <div className={styles.extends}>
+        <span className={styles.time}>{filters.timeFormat(time)}</span>
+        {bool ? (
+          <span className={styles.time}>
+            <b>{browses}</b>
+            <span> 浏览数</span>
+          </span>
+        ) : (
+          <></>
+        )}
       </div>
-      <h2>{title}</h2>
+      <h2 className={styles.title}>{title}</h2>
+      {bool ? <p className={styles.synopsis}>{synopsis}</p> : <></>}
     </div>
   )
 
-  const contentElement = () => (
-    <>
-      {avatarElement(avatar)}
-      {containerElement()}
-    </>
-  )
+  const contentElement = () => {
+    let html
+    switch (size) {
+      case 'small':
+        html = <>{avatarElement(avatar)}</>
+        break
+      case 'large':
+        html = (
+          <>
+            {avatarElement(avatar)}
+            {containerElement(true)}
+          </>
+        )
+        break
+      default:
+        html = (
+          <>
+            {avatarElement(avatar)}
+            {containerElement()}
+          </>
+        )
+        break
+    }
+    return html
+  }
 
   const mergedStyle: React.CSSProperties = {}
   // Horizontal gutter use padding
@@ -101,7 +120,13 @@ const ListItem = (props: ObjType) => {
 
   return (
     <div className={classes} style={{ ...mergedStyle }}>
-      {path ? <Link to={path}>{contentElement()}</Link> : contentElement()}
+      {path ? (
+        <Link className={styles.link} to={`${path}/${id}`}>
+          {contentElement()}
+        </Link>
+      ) : (
+        contentElement()
+      )}
     </div>
   )
 }

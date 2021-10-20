@@ -1,0 +1,45 @@
+.list {
+  position: relative;
+  margin: 24px 0;
+
+  &-wrap {
+    margin: 24px 0 48px;
+
+  }
+
+}
+
+.condition {
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding: 24px 0;
+
+  .menu {
+    position: relative;
+    margin-left: 24px;
+
+    .item {
+      position: relative;
+      display: inline-block;
+      padding: 4px 12px;
+      color: #fff;
+      border-radius: 4px;
+      background-color: #ccc;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #999;
+      }
+
+      &.action {
+        background-color: #1890ff;
+      }
+
+      &+.item {
+        margin-left: 8px;
+      }
+    }
+  }
+}

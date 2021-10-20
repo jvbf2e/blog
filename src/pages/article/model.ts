@@ -3,9 +3,9 @@
  * @LastEditors: jvb
  * @email: tusktalk@163.com
  * @github: https://github.com/jvbf2e
- * @Date: 2021-10-14 17:22:16
- * @LastEditTime: 2021-10-17 17:53:40
- * @FilePath: \Developmente:\Joints\Project\blog\src\pages\model.ts
+ * @Date: 2021-10-19 11:03:46
+ * @LastEditTime: 2021-10-19 11:17:40
+ * @FilePath: \Developmente:\Joints\Project\blog\src\pages\article\model.ts
  */
 import type { Effect, Reducer, Subscription } from 'umi'
 import type { ObjType } from '@/common/type'
@@ -13,41 +13,33 @@ import type { ListItemProps } from '@/components'
 
 import { query } from './service'
 
-type BannerType = {
-  img: string
-  title: string
-  msg: string
-}
-
-export interface IndexModelState {
+export interface ArticleListModelState {
   list: ListItemProps[]
-  banner: BannerType
+  total: number
+  totalPage: number
 }
 
-export interface IndexModelType {
-  namespace: 'index'
-  state: IndexModelState
+export interface ArticleListModelType {
+  namespace: 'articleList'
+  state: ArticleListModelState
   effects: {
     query: Effect
   }
   reducers: {
-    save: Reducer<IndexModelState>
-    reset: () => IndexModelState
+    save: Reducer<ArticleListModelState>
+    reset: () => ArticleListModelState
   }
   subscriptions: ObjType<Subscription>
 }
 
-const getDefaultState = (): IndexModelState => ({
+const getDefaultState = (): ArticleListModelState => ({
   list: [],
-  banner: {
-    img: '',
-    title: '',
-    msg: ''
-  }
+  total: 0,
+  totalPage: 0
 })
 
-const IndexModel: IndexModelType = {
-  namespace: 'index',
+const ArticleListModel: ArticleListModelType = {
+  namespace: 'articleList',
   state: getDefaultState(),
   reducers: {
     save(state, { payload }) {
@@ -60,8 +52,8 @@ const IndexModel: IndexModelType = {
   },
   effects: {
     *query({ payload }, { call, put }) {
-      const { code, data: res } = yield call(query)
-      if (code === 200) {
+      const { code, data: res } = yield call(query, { ...payload })
+      if (code === 1) {
         yield put({
           type: 'save',
           payload: res
@@ -72,4 +64,4 @@ const IndexModel: IndexModelType = {
   subscriptions: {}
 }
 
-export default IndexModel
+export default ArticleListModel

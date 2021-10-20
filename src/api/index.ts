@@ -3,12 +3,18 @@
  * @LastEditors: jvb
  * @email: tusktalk@163.com
  * @github: https://github.com/jvbf2e
- * @Date: 2021-10-15 14:46:44
- * @LastEditTime: 2021-10-15 14:54:20
+ * @Date: 2021-10-19 14:25:11
+ * @LastEditTime: 2021-10-19 14:50:32
  * @FilePath: \Developmente:\Joints\Project\blog\src\api\index.ts
  */
-import { request } from 'umi'
+import client from '@/utils/request'
 
-export const getNews = async () => {
-  return await request('home')
+const api = {
+  homes: '/v1/homes',
+  datasetField: '/v1/data-screen-custom/dataset-field'
 }
+
+export const datasetField = async (data) => client.post(api.datasetField, { data })
+export const getHomes = async () => client.get(api.homes)
+
+export default api

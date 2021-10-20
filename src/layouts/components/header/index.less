@@ -15,8 +15,12 @@
       display: flex;
       flex-direction: row;
       &Item {
-        & > a {
-          display: inline-block;
+        position: relative;
+      }
+    }
+  }
+  .link {
+    display: inline-block;
           margin: 20px 24px;
           padding: 4px 12px;
           color: var(--color-white);
@@ -27,8 +31,21 @@
             color: var(--color-auxiliary);
             text-decoration: none;
           }
-        }
-      }
+  }
+  &-wrap {
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 100vw;
+      border-bottom: 1px solid #f3f3f3;
+      transform: translateX(-50%);
+      z-index: 9;
+    }
+    .link {
+      color: var(--color-black);
     }
   }
 }

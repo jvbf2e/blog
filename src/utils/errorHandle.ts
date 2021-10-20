@@ -28,9 +28,6 @@ const codeMessage: {
 }
 
 interface ErrorProps {
-  name: string
-  data: any
-  type: string
   response: {
     status: number
     statusText: string
@@ -44,20 +41,21 @@ interface ErrorProps {
  * @returns
  */
 const errorHandler = (error: ErrorProps) => {
-  if (error.name === 'BizError') {
-    console.error({
-      message: `请求错误 ${error.data.code}`,
-      description: error.data.msg
-    })
-    return error.data.code
-  }
   const { response } = error
-  const errorText = codeMessage[response.status] || response.statusText
-  const { status, url } = response
-  console.error({
-    message: `请求错误 ${status}: ${url}`,
-    description: errorText
-  })
+  if (response && response.status) {
+    const errorText = codeMessage[response.status] || response.statusText
+    const { status, url } = response
+    console.error({
+      message: `请求错误 ${status}: ${url}`,
+      description: errorText
+    })
+  } else if (!response) {
+    console.error({
+      description: '您的网络发生异常，无法连接服务器',
+      message: '网络异常'
+    })
+  }
+  return response
 }
 
 export default errorHandler

@@ -1,0 +1,85 @@
+.article {
+  position: relative;
+  margin: 0 15%;
+  padding: 24px 0;
+  min-width: 1000px;
+
+  .avatar {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    &Img {
+      position: relative;
+      width: 100%;
+    }
+  }
+
+  .feature {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    bottom: 8%;
+    padding: 4px 8px 4px 12px;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 20px 0 0 20px;
+    background-color: red;
+    z-index: 9;
+  }
+
+  .tag {
+    display: inline-block;
+    position: relative;
+    padding: 2px 8px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 12px;
+    background-color: #1890ff;
+    & + .tag {
+      margin-left: 8px;
+    }
+    &Wrap {
+      position: absolute;
+      top: 4%;
+      left: 24px;
+      z-index: 9;
+    }
+  }
+
+  .container {
+    position: relative;
+    margin: 24px 0;
+    .extends {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      .time {
+        position: relative;
+        color: #999;
+        font-size: 16px;
+      }
+    }
+    .title {
+      position: relative;
+      color: #333;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.6em;
+    }
+  }
+
+  .context {
+    position: relative;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6em;
+  }
+
+  .like {
+    position: relative;
+    margin-top: 24px;
+    border-top: 1px solid #f3f3f3;
+  }
+}

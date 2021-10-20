@@ -4,40 +4,31 @@
  * @email: tusktalk@163.com
  * @github: https://github.com/jvbf2e
  * @Date: 2021-10-14 17:12:14
- * @LastEditTime: 2021-10-17 17:54:39
+ * @LastEditTime: 2021-10-19 14:15:20
  * @FilePath: \Developmente:\Joints\Project\blog\mock\home.ts
  */
 import type { Request, Response } from 'express'
 
 import Mock from 'mockjs'
 
+import { response } from '../common/index'
+import { dataList } from './article'
+
 export default {
   // 支持值为 Object 和 Array
-  '/home': (req: Request, res: Response) => {
-    const json = Mock.mock({
-      code: 200,
-      msg: 'success',
-      data: {
+  'GET /v1/homes': (req: Request, res: Response) => {
+    return res.json(response(200, {
+      code: 1,
+      data: Mock.mock({
         banner: {
           img: '@image("1920x900")',
           title: '@title()',
           msg: '@paragraph()'
         },
-        'list|10': [
-          {
-            id: '@guid()',
-            avatar: '@image("300x250")',
-            'tags|1-3': ['@integer(0, 2)'],
-            time: '@datetime()',
-            title: '@title()',
-            synopsis: '@paragraph()',
-            browses: '@integer(0,100)',
-            feature: 'Feature',
-            path: '/'
-          }
-        ]
-      }
-    })
-    return res.json(json)
+        list: dataList.splice(0, 10)
+      }),
+      message: '成功',
+      sysMsg: 'success'
+    }))
   }
 }
